@@ -1,27 +1,3 @@
-<!--
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Inicio de sesion</title>
-</head>
-<body>
-    <p>Inicie sesion </p>
-    <form method="post">
-        {% csrf_token %}
-        <label for="usuario">
-            Usuario
-            <input type="text" name="username">
-        </label>
-        <label for="pass">
-            Contraseña
-            <input type="password" name="password">
-        </label>
-        <button type="submit">Ingresar</button>
-    </form>
-</body>
-</html>
--->
-
 {% load static %}
 <html lang="en">
     <head>
@@ -31,7 +7,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Inicio de sesion</title>
-        <link type='text/css' href='{% static "css/bootstrap.css" %}' rel='stylesheet'/>
+<!--         <link type='text/css' href='{% static "css/bootstrap.css" %}' rel='stylesheet'/> -->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="bg-primary">
