@@ -1,0 +1,112 @@
+{% extends "plantillaPadre.html" %}
+
+{% block title %} Visualizar medicamentos {% endblock %}
+
+{% block content %}
+    <main>
+        <!--titulo y texo antes de las tablas-->
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">Visualización de medicamentos </h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item active">Se muestran los medicamentos que los pacientes no
+                    deben de tomar por sus enfermedades, alergias, condicion o medicamentos que consumen
+                    actualmente.
+                </li>
+            </ol>
+
+            <div class="row">
+                {% csrf_token %}
+
+                <!--Enfermedades-->
+                {% if medicamentos|length > 0 %}
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th >Medicamento que no debe tomar el paciente por sus enfermedades: </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for medicamento in medicamentos %}
+                                    <tr >
+                                        <td >{{medicamento.cNombre}}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <!--Alergias-->
+                {% if MEdicamentos|length > 0 %}
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Medicamentos que no debe tomar el paciente por sus alergias:</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for MEdicamento in MEdicamentos %}
+                                    <tr>
+                                        <td>{{ MEdicamento.cNombre }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <!--Condiciones-->
+                {% if MEDIcamentos|length > 0 %}
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Medicamentos que no debe tomar el paciente por su condicion actual:</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for MEDIcamento in MEDIcamentos %}
+                                    <tr>
+                                        <td>{{ MEDIcamento.cNombre }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <!--Consumos-->
+                {% if MEDICAmentos|length > 0 %}
+                <div class="col-xl-3 col-md-6">
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Medicamentos que no debe tomar el paciente por sus otros medicamentos:</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for MEDICAmento in MEDICAmentos %}
+                                <tr>
+                                    <td>{{ MEDICAmento.cNombre }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            <button onclick="goBack()" class="btn btn-secondary" style="width: 11%;">Regresar</button>
+            <a class="btn btn-primary" href="{% url 'seleccionar' %}" style="width: 11%;" >Nuevo paciente</a>
+        </div>
+    </main>
+{% endblock %}

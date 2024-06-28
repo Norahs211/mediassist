@@ -1,0 +1,123 @@
+{% extends "plantillaPadre.html" %}
+
+{% block title %} Seleccionar padecimientos {% endblock %}
+
+{% block content %}
+    <main>
+        <!--titulo y texo antes de las tablas-->
+        <div class="container-fluid px-4">
+            <h1 class="mt-4">Selección de padecimientos</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item active">Se deberán seleccionar las enfermedades, alergias y
+                    condición actual del paciente. Además, si actualmente consume alguno
+                    de los siguientes medicamentos.
+                </li>
+            </ol>
+
+            <form method="post" action="{% url 'consulta_medicamentos' %}">
+                <div class="row">
+                    {% csrf_token %}
+
+                    <!--Enfermedades-->
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card-body">
+                           <table class="datatablesSimple" style="width: 100%;" >
+                                <thead>
+                                    <tr>
+                                        <th>Enfermedad</th>
+                                        <th>Seleccionar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for enfermedad in enfermedades %}
+                                        <tr>
+                                            <td>{{ enfermedad.cNombre }}</td>
+                                            <td><input type="checkbox" name="enfermedades" value="{{ enfermedad.id }}"></td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!--Alergias-->
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card-body">
+                            <table class="datatablesSimple" style="width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>Alergia</th>
+                                        <th>Seleccionar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for alergia in alergias %}
+                                        <tr>
+                                            <td>{{ alergia.cNombre }}</td>
+                                            <td><input type="checkbox" name="alergias" value="{{ alergia.id }}"></td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!--Condiciones-->
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card-body">
+                           <table class="datatablesSimple" style="width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>Condición actual</th>
+                                        <th>Seleccionar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for condicion in condiciones %}
+                                        <tr>
+                                            <td>{{ condicion.cNombre }}</td>
+                                            <td><input type="checkbox" name="condiciones" value="{{ condicion.id }}"></td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6">
+                        <table class="datatablesSimple" style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th>Consumo Actual</th>
+                                    <th>Seleccionar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for consumo in consumos %}
+                                    <tr>
+                                        <td>{{ consumo.cNombre }}</td>
+                                        <td><input type="checkbox" name="consumos" value="{{ consumo.id }}"></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit" style="width: 11%;">Ver medicamentos</button>
+            </form>
+        </div>
+    </main>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
